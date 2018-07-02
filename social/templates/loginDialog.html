@@ -1,0 +1,35 @@
+<div dojoType="dijit.Dialog" id="loginDialog" title="Log In" >
+<div style="width:250px; Height: 80px;">
+
+	<label id="loginDlgMessage"></label><br/>
+	<span style="position: absolute; left:5px; top:30px;">User Name</span>
+	<div style="position: absolute; left: 100px; top:30px;" >
+         <input type = "text" id="loginUsername" name="username"
+	      dojoType="dijit.form.ValidationTextBox"
+           required="true"
+           promptMessage="Enter user name."
+           invalidMessage="User name is required."  
+           trim="true"  
+           style="width: 10em;"/>
+    </div>
+    <br/><br/>
+    <span style="position: absolute; left:5px; top:60px;">Password</span>
+    <div style="position: absolute; left: 100px; top:60px;">
+	    <input type = "password" id="loginPassword" name="password"
+		      dojoType="dijit.form.ValidationTextBox"
+	           required="true" 
+	           propercase="true" 
+	           promptMessage="Enter Password."
+	           invalidMessage="Password is required."  
+	           trim="true"  
+	           style="width: 10em;"/>
+   	</div>
+   	<button dojoType="dijit.form.Button" >Save</button>
+   	<button dojoType="dijit.form.Button" 
+   			onclick="loginBtnClick" 
+   			style="position: absolute; left: 50px; top:90px;" 
+   			class="login">
+   		Log In
+   	</button>
+</div>	
+</div>

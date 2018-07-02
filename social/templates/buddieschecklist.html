@@ -1,0 +1,9 @@
+<span style="position:relative; left:20px;">
+Allow buddies access<br/>
+{% for buddy in buddies %}
+	<input id="budCbStgs{{ forloop.counter }}" dojotype="dijit.form.CheckBox" 
+           name="buddies" checked="" value="{{ buddy.display_name }}" 
+           type="checkbox" /> 
+    <label for="cb">{{ buddy.display_name }}</label>
+{% endfor %}
+    </span> 

@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block buddies %}
+    <b>Add a Buddy<>
+    <form action="/addBuddy/" "method="post">
+      <div><input type="text" name="email" /></div>
+      {% if message %}
+      <p><b>{{ message }}</b></p>
+      {% endif %}
+      <div><input type="submit" value="Add" />
+    </form>
+    <FORM METHOD="LINK" ACTION="/">
+		<INPUT TYPE="submit" VALUE="Cancel">
+	</FORM>
+{% endblock %}

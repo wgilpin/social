@@ -1,0 +1,28 @@
+<!-- <div id="addBuddyDiv" dojoType="dijit.layout.BorderContainer" design="headline" gutters="false" 
+					style=" height: 200px; width: 150px; ">  -->
+	<div dojoType="dijit.layout.ContentPane" region="top" class="dijitBorderContainer" style="border: 5px #B9CBF1 solid;">
+		<h3>Add Buddy to Room</h3>
+				{% include 'buddiespane.html' %}
+		<button dojoType="dijit.form.Button" onclick="addBuddyToRoom">Add</button>
+	</div>
+	<div dojoType="dijit.layout.ContentPane" region="center" 
+				layoutAlign="client" class="dijitBorderContainer" style="border: 5px #B9CBF1 solid;">
+		<h3>Add Other to Room</h3>
+			Non-Buddies
+			<input type="text" id="email" name="email" size="30"       
+	           dojoType="dijit.form.ValidationTextBox"
+	           required="true" 
+	           regExpGen="dojox.regexp.emailAddress"
+	           promptMessage="Enter email address."
+	           invalidMessage="Invalid Email Address."
+	           trim="true"
+	       	/>
+			<button dojoType="dijit.form.Button" onclick="addRoomyToRoom">Add</button>
+	</div>
+	<div dojoType="dijit.layout.ContentPane" region="bottom" class="dijitBorderContainer" style="border: 5px #B9CBF1 solid;">
+		<h3>Current Roomies({{ room_member_count }})</h3>
+		<ul>
+			<li>Roomie 1</li>
+			<li>Roomie 2</li>
+		</ul>	
+	</div>

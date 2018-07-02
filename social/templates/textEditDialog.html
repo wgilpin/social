@@ -1,0 +1,42 @@
+<div dojoType="dijit.Dialog" id="editDialog" title="Edit Text" >
+	<div id="editorToolbar" dojoType="dijit.Toolbar">
+	    <!-- The following adds a line between toolbar sections -->
+	    <span dojoType="dijit.ToolbarSeparator"></span>
+		<div dojoType="dijit.form.Button" id="editorToolbar.bold" iconClass="dijitEditorIcon dijitEditorIconBold"   
+	    	showLabel="false" onclick="callFormatting('Bold');">bold</div>
+	    <div dojoType="dijit.form.Button" id="editorToolbar.italic" iconClass="dijitEditorIcon dijitEditorIconItalic"
+	    	showLabel="false" onclick="callFormatting('Italic');">italic</div>
+	    <div dojoType="dijit.form.DropDownButton" iconClass="dijitEditorIcon dijitEditorIconForeColor">
+	        
+			<div dojoType="dijit.ColorPalette" onChange="changeFontColor"></div>
+		</div>
+	    <select onchange="changeFontSize(this.selectedIndex+1);">
+		  <option>xx-small</option>
+		  <option>x-small</option>
+		  <option>small</option>
+		  <option>medium</option>
+		  <option>large</option>
+		  <option>x-large</option>
+		  <option>xx-large</option>
+		</select>	
+		<span dojoType="dijit.ToolbarSeparator"></span>
+		Page Link
+		<select id="editorPageLinks" onchange="editorOnSelPageLink(this.options[selectedIndex].value)">
+			<option>No Pages</option>
+		</select>
+		<div dojoType="dijit.form.Button" id="contentToolbar.addExternalLink" iconClass="contentToolbarIconAddLink"   
+	    	showLabel="true" onclick="editorAddLink();">Web Link</div>
+		
+	</div>
+	<!-- changeFontColor('#1212aa'); -->
+	<DIV 
+		id="EditDialogEd"
+		CONTENTEDITABLE
+		STYLE="height:250px;background-color:white; overflow:auto; width:400px;"> 
+		Type Here
+	</DIV>
+	
+	<button dojoType="dijit.form.Button" onclick="EditDlgSaveBtnClick">Save</button>
+	<button dojoType="dijit.form.Button" onclick="javascript:dijit.byId('editDialog').hide()">Cancel</button>
+</div>
+<!-- {name:'dijit._editor.plugins.FontChoice', command:'fontName', generic:true},{name:'dijit._editor.plugins.FontChoice', command:'fontSize', generic:true} -->

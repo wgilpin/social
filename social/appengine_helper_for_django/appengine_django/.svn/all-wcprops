@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/appengine_django
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/appengine_django/__init__.py
+END
+mail.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/appengine_django/mail.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/appengine_django/models.py
+END
+replacement_imp.py
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/appengine_django/replacement_imp.py
+END

@@ -1,0 +1,14 @@
+<div dojoType="dijit.Dialog" id="renamePageDialog" title="Name the Page" >
+	<form id="renamePageform">
+		<label for="pageName">Page Name</label>
+		<input type = "text" id="pageName" name="pageName"
+	       dojoType="dijit.form.ValidationTextBox"
+           required="true"
+           size="50"
+           invalidMessage="Page must have a name"  
+           trim="true"  
+           style="width: 20em;"/>
+           <br/>
+     </form>
+     <button  onclick="validateRenamePage()">OK</button>
+</div>

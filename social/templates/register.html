@@ -1,0 +1,60 @@
+<div dojoType="dijit.Dialog" id="registerDialog" title="Register New user" >
+	<form action="/register/" method="post">
+		<label for="reg-username">User Name</label>
+		<div class="login">
+		     <input type = "text" id="reg-username" name="reg-username"
+		      dojoType="dijit.form.ValidationTextBox"
+		       required="true"
+		       promptMessage="Enter user name."
+		       invalidMessage="User name is required."  
+		       trim="true"  
+		       style="width: 10em;"/>
+		</div>
+		{% if error %}
+		<br/>
+		<span style="font-color:red">{{ error}}</span>
+		<br/>
+		{% endif %}
+		<br/>
+		<label for="reg-password1">Password</label>
+		<div class="login">
+		    <input type = "password" id="reg-password1" name="reg-password1"
+			      dojoType="dijit.form.ValidationTextBox"
+		           required="true" 
+		           propercase="true" 
+		           promptMessage="Enter Password."
+		           invalidMessage="Password is required."  
+		           trim="true"  
+		           style="width: 10em;"/>
+			      
+		</div>
+		<br/>
+		<label for="reg-password2">Confirm Password</label>
+		<div class="login">
+		    <input type = "password" id="reg-password2" name="reg-password2"
+			      dojoType="dijit.form.ValidationTextBox"
+		           required="true" 
+		           propercase="true" 
+		           promptMessage="Reenter Password to Confirm."
+		           invalidMessage="Password is required."  
+		           trim="true"  
+		           validator="return this.getValue() == dijit.byId('reg-password1').getValue()"
+		           style="width: 10em;"/>
+			      
+		</div>
+		<br/>
+		<label for="reg-email">Email Address</label>
+		<div class="login">
+		     <input type = "text" id="reg-email" name="reg-email"
+		      dojoType="dijit.form.ValidationTextBox"
+		       required="true"
+		       regExpGen="dojox.regexp.emailAddress"
+		       promptMessage="Enter email address."
+		       invalidMessage="email is required."  
+		       trim="true"  
+		       style="width: 10em;"/>
+		</div>
+		<br/>
+		<div><input class="login" type="submit" value="Register"></div>
+    </form>
+</div>

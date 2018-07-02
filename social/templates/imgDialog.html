@@ -1,0 +1,8 @@
+<div dojoType="dijit.Dialog" id="imgDialog" title="Upload Image" style="width: 300px; Height: 200px;">
+Select an image to upload, then click on some blank space in this dialog to make it upload (for some reason)
+<form method="post" enctype="multipart/form-data" action="/uploadImage/">
+	<input type="hidden" id="imgDlgReturnPage" name="page" value="Not Set">
+	<label for="file">Image </label><input id="file" type="file" name="imgUp"/><br>
+	<input type="submit" value="Save"><br>
+</form>	
+</div>

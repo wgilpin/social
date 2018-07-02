@@ -1,0 +1,13 @@
+<div dojoType="dijit.layout.ContentPane" region="top" >
+	<h3>Chat</h3>
+</div>
+<div dojoType="dijit.layout.ContentPane" region="center" id="chat_history">
+</div>
+<div dojoType="dijit.layout.ContentPane" region="bottom">
+		<input type="hidden" id="chat_seq" value=-1>
+		<input type="checkbox"  id="doPoll">Poll</input>
+		<textarea dojoType="dijit.form.TextBox" name="chat_entry" id="chat_entry"
+			rows=3 style="width: 90%">
+		</textarea>
+		<button dojoType="dijit.form.Button" onClick="sendChat()">Send</button>
+</div>

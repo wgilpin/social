@@ -1,0 +1,93 @@
+<!-- Left Sidebar -->
+<div dojoType="dijit.layout.BorderContainer" design="headline" gutters="false" style="border: 0px #B9CBF1 solid;" 
+	id="left-bar-content" class="left-bar-open"	>
+    <div dojoType="dijit.layout.ContentPane" region="top"  class="dijitBorderContainer">
+<!-- Top item in left sidebar - Rooms -->
+		<div id="lb-rooms-pane">
+	        <b>Rooms</b>
+	        <select dojoType="dijit.form.FilteringSelect"
+		        name="roomSel"
+		        id="roomSel"
+		        value={{ room_name }}
+		        size="10"
+		        width="100" 
+		        style="width: 100px">
+		        {% for room in myrooms %}
+			    <option value ="{{ room }}">{{ room }}</option>
+			    {% endfor %}
+			</select>
+			<div id="roomsToolbar" dojoType="dijit.Toolbar">
+				<div dojoType="dijit.form.Button" id="roomsToolbar.new">+</div>
+				<div dojoType="dijit.form.Button" id="roomsToolbar.del">-</div>
+			</div>
+		</div>
+    </div>
+    <div dojoType="dijit.layout.ContentPane" region="center" splitter="true" id="lb-centre-pane">
+	    <!-- Mid item in left sidebar - Buddies & Roomies -->
+	    <div dojoType="dijit.layout.AccordionContainer">
+<!-- Pages -->
+	    	<div dojoType="dijit.layout.AccordionPane"
+	    			title="Pages">
+	    		<div dojoType="dijit.layout.ContentPane" refreshOnShow="true" preload="false" href="/pagesPane/">Pages...</div>
+	    		<div id="pagesPaneToolbar" dojoType="dijit.Toolbar">
+	    			<div dojoType="dijit.form.Button" 
+						id="pagesPaneTb.add" 
+						onclick="mainTb_function('addPage')">+</div>
+				</div>
+	    	</div>
+<!-- Roomies -->
+	    	<div dojoType="dijit.layout.AccordionPane"
+	    			title="Members">
+	    		{% include 'roomiespane.html' %}
+	    		<div id="roomiesToolbar" dojoType="dijit.Toolbar">
+	    			<div dojoType="dijit.form.Button" 
+						id="roomiesToolbar.new" 
+						onclick="dijit.byId('addRoomyDlg').show()">+</div>
+				</div>
+	    	</div>
+	    	<div dojoType="dijit.Dialog" id="addRoomyDlg" title="Add Roomy" execute="submitAddRoomy();">
+	    		{% include 'addroomypane.html' %}
+		    	</div>
+<!-- Buddies -->
+	    	<div dojoType="dijit.layout.AccordionPane"
+	    			title="Buddies" id="buddiesPane">
+		        	{% include 'buddiespane.html' %}	
+			    <div id="buddiesToolbar" dojoType="dijit.Toolbar">
+					<div dojoType="dijit.form.Button" 
+						id="buddiesToolbar.new" 
+						onclick="dijit.byId('addBuddyDlg').show()">+</div>
+				</div>
+				<div dojoType="dijit.Dialog" id="addBuddyDlg" title="Add Buddy" execute="submitAddBuddy();">
+				    <table>
+				     	<tr><label>Add Buddy</label>
+				     	</tr>
+				        <tr>
+					        <td><label for="name">Buddy's Display Name: </label></td>
+				            <td><input dojoType="dijit.form.TextBox" id="newBuddyName"></td>
+				        </tr>
+				        <tr>
+				                <td colspan="2" align="center">
+				                        <button dojoType=dijit.form.Button type="submit">OK</button></td>
+				        </tr>
+				    </table>
+				</div>
+				</div>
+<!-- Buddy requests -->
+			<div dojoType="dijit.layout.AccordionPane"
+	    			title="Requests" >
+	    		<div dojoType="dijit.layout.ContentPane" id="requestPane">
+		    		{% include 'buddyreqspane.html' %}
+			    </div>
+			    <div id="requestsToolbar" dojoType="dijit.Toolbar">
+					<div dojoType="dijit.form.Button" id="requestsToolbar.new">+</div>
+				</div>
+	    	</div>
+		</div>	
+  	</div>
+      	<div dojoType="dijit.layout.ContentPane" region="bottom" style="height: 40%;" splitter="true" id="lb-chat-pane">
+<!-- Bottom item in left sidebar - Chat -->
+  		<div dojoType="dijit.layout.BorderContainer" design="headline" gutters="false" class="dijitBorderContainer" class="left-bar-item"	>
+    		{% include 'chatPane.html' %}
+		</div>
+     </div>
+ 	</div>	

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    	<link rel="stylesheet" href="/css/style.css" /> 
+  		<!-- src="http://o.aolcdn.com/dojo/1.2.0/dojo/dojo.xd.js" -->
+ 	    <!-- @import "http://o.aolcdn.com/dojo/1.2.0/dojo/resources/dojo.css" -->	
+	    <!-- @import "http://o.aolcdn.com/dojo/1.2.0/dijit/themes/tundra/tundra.css" 
+	    @import "/js/dojo-release-1.2.3/dojo/resources/dojo.css";
+	    	 @import "/js/dojo-release-1.2.3/dijit/themes/soria/soria.css";-->		
+    	<style type="text/css">
+	    	 @import "/js/dojo-release-1.2.3/dojo/resources/dojo.css";
+	    	 @import "/js/dojo-release-1.2.3/dijit/themes/soria/soria.css";
+	    </style>
+	    <script type="text/javascript"
+	    	src="http://o.aolcdn.com/dojo/1.2.0/dojo/dojo.xd.js"
+	    	djConfig="parseOnLoad: true, isDebug: true">
+    	</script>
+    	<script type="text/javascript">
+	    	dojo.require("dojo.parser");
+	    	dojo.require("dijit.Editor");
+	    	dojo.require("dijit.InlineEditBox");
+	    	dojo.require("dijit.form.Button");
+	    	dojo.require("dijit.form.Textarea");  
+	    	dojo.require("dijit.form.TextBox");
+	    	dojo.require("dijit.form.CheckBox");
+	    	dojo.require("dijit.form.FilteringSelect");
+	    	dojo.require("dijit.layout.ContentPane");
+	        dojo.require("dijit.layout.BorderContainer");
+	        dojo.require("dijit.layout.AccordionContainer");
+	        dojo.require("dijit._editor.plugins.FontChoice");  // 'fontName','fontSize','formatBlock'
+	  		dojo.require("dijit._editor.plugins.TextColor");
+	  		dojo.require("dijit._editor.plugins.LinkDialog");
+	  		dojo.require("dijit.Toolbar");
+	  		dojo.require("dijit.Dialog");
+	  		dojo.require("dojox.validate.regexp");   
+			dojo.require("dijit.form.ValidationTextBox");
+			dojo.require("dijit._Widget");
+			dojo.require("dojox.layout.FloatingPane");
+	    </script>
+    <script type="text/javascript" src="js/canvasEditor.js"></script>
+</head>
+
+<body class="soria">
+		 <div id="mainDiv" dojoType="dijit.layout.BorderContainer" design="sidebar" gutters="false" 
+					style=" height: 100%; width: 100%; ">
+			<div dojoType="dijit.layout.ContentPane" region="top" class="dijitBorderContainer" style="border: 5px #B9CBF1 solid;">
+				<!-- Headline -->
+				Rabid Rabbit - 
+				{% if username %}
+				    Logged in as <b>{{ username }}</b> 
+				    <form action="/logoff" method="get">
+				      <input type="submit" value="Logoff">
+				    </form>
+				{% else %}
+				    <a href="/login/">Log In</a>
+				{% endif %}
+			</div>
+			
+		 	<div dojoType="dijit.layout.ContentPane" region="left"
+		        		style="width: 120px;">
+		         {% include 'leftBar.html' %} 
+		    </div>
+		    
+			<div dojoType="dijit.layout.ContentPane" region="center" 
+				layoutAlign="client">
+				<!-- Main Text Edit -->
+				<div dojoType="dijit.layout.BorderContainer" design="headline" gutters="false"	style="border: 5px #B9CBF1 solid;">
+				    <div dojoType="dijit.layout.ContentPane" region="top" class="dijitBorderContainer">
+				        <h1>
+					        <span 
+					        	dojoType="dijit.InlineEditBox"
+					        	editor="dijit.form.TextBox"
+					        	onChange="editRoomName(arguments[0])">
+					        	{{ room_name }}
+					        	</span>
+				        </h1>
+				    </div>
+				    <div dojoType="dijit.layout.ContentPane" region="center">
+		      			<textarea name="content" id="content" dojoType="dijit.Editor" 
+		      				extraPlugins="['foreColor','hiliteColor',{name:'dijit._editor.plugins.FontChoice', command:'fontName', generic:true},{name:'dijit._editor.plugins.FontChoice', command:'fontSize', generic:true},{name:'dijit._editor.plugins.LinkDialog'}]"
+					          >{{ content }}
+				        </textarea><br>
+						<div dojoType="dojox.layout.FloatingPane" title="my title">
+				                Content To be Floated
+				        </div>
+			      	</div>
+			      	<div dojoType="dijit.layout.ContentPane" region="bottom" >
+			      		<input type="button" value="Save" onclick="saveRoomContent()">
+				      	<!-- <button dojoType="dijit.form.button" label="Save" onclick="saveRoomContent()">-->
+				    </div>	
+			    </div>	
+			</div>	
+		</div>
+	</body>
+</html>

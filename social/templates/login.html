@@ -1,0 +1,57 @@
+<html>
+  	<head>
+  		<link rel="stylesheet" href="/css/style.css" /> 
+		<link id="themeStyles" href="/dijit/themes/soria/soria.css" rel="stylesheet">
+		<link id="dojoStyles"  href="/dojo/resources/dojo.css" rel="stylesheet"> 
+		
+		<script type="text/javascript"
+			src="/dojo/dojo.js"
+			djConfig="parseOnLoad: true">
+		</script>
+    	<script type="text/javascript">
+	        dojo.require("dojo.parser");  
+	        dojo.require("dijit.form.Button");    
+	        dojo.require("dijit.form.ValidationTextBox");    
+	        dojo.require("dijit.Dialog");
+            dojo.require("dojox.validate.regexp");     
+	    </script>
+  	</head>
+  	<body class="soria">
+  		<div class="login">
+	  		<form action=/login/ method="post">
+		      	
+		          <img src="/images/easel.gif"alt="The Social Canvas"/>
+			  	<p>
+			    <b>Login</b>
+				</p>	
+		        <label for="username">User Name</label>
+		        <div class="login">
+			         <input type = "text" id="username" name="username"
+				      dojoType="dijit.form.ValidationTextBox"
+			           required="true"
+			           promptMessage="Enter user name."
+			           invalidMessage="User name is required."  
+			           trim="true"  
+			           style="width: 10em;"/>
+			    </div>
+			    <br/>
+			    <label for="password">Password</label>
+			    <div class="login">
+				    <input type = "password" id="password" name="password"
+					      dojoType="dijit.form.ValidationTextBox"
+				           required="true" 
+				           propercase="true" 
+				           promptMessage="Enter Password."
+				           invalidMessage="Password is required."  
+				           trim="true"  
+				           style="width: 10em;"/>
+			   	</div>
+			   	<br/>
+			   	<input class="login" type="submit" value="Login"/>
+		    </form>  
+		    <br/>
+		    Not Registered?  <a href="#" onclick='javascript:dijit.byId("registerDialog").show()'>click to register</a>
+	    </div>
+	    {% include 'register.html' %}
+  	</body>
+</html>

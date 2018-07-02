@@ -1,0 +1,42 @@
+
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  <p>
+  Welcome: {{ username }}
+  </p>
+      <form action="/chat" method="post">
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><input type="submit" value="Start Chat"></div>
+    </form>
+    
+    <p><b>Buddies ({{ buddy_count }})</b></p>
+    <ul>
+    {% for buddy in buddies %}
+    	<li>{{ buddy.email }}</li>
+    {% endfor %}
+    </ul>
+    <p><b>Buddy Requests Outstanding ({{ out_count }})</b></p>
+    <ul>
+    {% for buddy in buddies_outstanding %}
+    	<li>{{ buddy.email }}</li>
+    {% endfor %}
+    </ul>
+    <form action="/addBuddy" method="get">
+      <div><input type="submit" value="Add Buddy"></div>
+    </form>
+
+    <form action="/register" method="get">
+      <div><input type="submit" value="Register">
+    </form>
+
+	{% if username %}
+    <form action="/logoff" method="get">
+      <div><input type="submit" value="Logoff">
+    </form>
+    {% endif %}
+
+  </body>
+</html>

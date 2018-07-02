@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>{% block title %}The Social Canvas{% endblock %}</title>
+</head>
+
+<body>
+	<p><h1>The Social Canvas</h1></b>
+	<table border>
+	<tr>
+	<td>
+    <div id="thisroom">
+        {% block thisroom %}
+        <p><b>This Room<b></p>
+        <ul>
+            <li>Me</li>
+      		<li>...all rooms are public now...</li>
+        </ul>
+        {% endblock %}
+    </div>
+	</td>
+	<td rowspan="3" class="whiteboard">
+	<div id="content">
+        {% block content %}Content...{% endblock %}
+    </div>
+    </td>
+	</tr>
+	<tr>
+	<td>
+    <div id="buddies">
+        {% block buddies %}
+        <p><b>Buddies ({{ buddy_count }})</b></p>
+	    <ul>
+	    {% for buddy in buddies %}
+	    	<li>{{ buddy.email }}</li>
+	    {% endfor %}
+	    </ul>
+	    <p><b>Buddy Requests Outstanding ({{ out_count }})</b></p>
+	    <ul>
+	    {% for buddy in buddies_outstanding %}
+	    	<li>{{ buddy.email }}</li>
+	    {% endfor %}
+	    </ul>
+	    <form action="/addBuddy" method="get">
+	      <div><input type="submit" value="Add Buddy"></div>
+	    </form>
+        {% endblock %}
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div id="chat">
+        {% block chat %}
+        <form action="/chat" method="post">
+	      <div><textarea name="content" rows="3" cols="40"></textarea></div>
+	      <div><input type="submit" value="Start Chat"></div>
+	    </form>
+        {% endblock %}
+    </div>
+	</td>
+	</tr>	
+    </table>
+    {% if username %}
+    <form action="/logoff" method="get">
+      <div><input type="submit" value="Logoff">
+    </form>
+    {% else %}
+    <a href="/login/">Log In</a>
+    {% endif %}
+</body>
+</html>

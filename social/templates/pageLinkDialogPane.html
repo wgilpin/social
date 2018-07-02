@@ -1,0 +1,8 @@
+<p><b>Link to Page in room '<b>{{ room_name }}</b>' ({{ page_count }})</b></p>
+
+{% for page in pages %}
+<a href="javascript:pageLinkDlgClick('{{ page }}')">{{ page }}</a><br/>
+{% endfor %}
+<br/>
+<br/>
+

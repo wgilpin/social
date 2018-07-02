@@ -1,0 +1,27 @@
+{% if buddies_outstanding %}
+<p><b>Requests Sent ({{ out_count }})</b></p>
+<ul>
+{% for buddy in buddies_outstanding %}
+	<li>{{ buddy.display_name }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p><b>Requests Sent</b></p>
+<i>None</i>
+{% endif %}
+
+{% if buddies_received %}
+<p><b>Requests Received ({{ in_count }})</b></p>
+<table>
+{% for buddy in buddies_received %}
+	<tr>
+	<td>{{ buddy.display_name }}</td>
+	<td><a href="javascript:acceptBuddy('{{ buddy.display_name }}')">Yes</a></td>
+	<td><a href="javascript:rejectBuddy('{{ buddy.display_name }}')">No</a></td>
+	</tr>
+{% endfor %}
+</table>
+{% else %}
+<p><b>Requests Received</b></p>
+<i>None</i>
+{% endif %}

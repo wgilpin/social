@@ -1,0 +1,12 @@
+<div dojoType="dijit.Dialog" id="pageLinkDialog" title="Insert Link" >
+	<b>Display Text</b>
+	<input type="text" size="60"><br/><br>
+	<hr>
+	<b>URL / Page</b>
+	<input id="linkDlgURL" type="text" size="60"><br/><br>
+	<hr>
+	<div dojoType="dijit.layout.ContentPane" href="/pageLinksPane/" preload="false">
+	 {% include "pageLinkDialogPane.html" %}
+	</div>
+     <button  onclick="insertLink()">Insert</button>
+</div>

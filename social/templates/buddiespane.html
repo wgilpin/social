@@ -1,0 +1,11 @@
+<p><b>Buddies ({{ buddy_count }})</b></p>
+<table>
+{% for buddy in buddies %}
+<tr><td>
+{{ buddy.display_name }}&emsp;</td>
+<td><a href="javascript:remove_buddy('{{ buddy.display_name }}')">remove</a></td>
+<td><a href="javascript:startChat('{{ buddy.display_name }}')">chat</a></td>
+</tr>
+{% endfor %}
+<td>&emsp;</td>
+</table>

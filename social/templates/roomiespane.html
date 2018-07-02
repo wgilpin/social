@@ -1,0 +1,10 @@
+<p><b>Members for {{ room_name }} ({{ roomy_count }})</b></p>
+<table>
+{% for roomy in roomies %}
+<tr><td>
+{{ roomy.display_name }}&emsp;</td>
+<td><a href="javascript:remove_roomy('{{ room_name}}', '{{ roomy.display_name }}')">X</a></td>
+</tr>
+{% endfor %}
+<td>&emsp;</td>
+</table>

@@ -1,0 +1,166 @@
+import cgi
+import wsgiref.handlers
+import os
+import pickle
+import sys
+import hashlib
+        
+
+from google.appengine.ext.webapp import template
+from google.appengine.api import users
+from google.appengine.ext import webapp
+from google.appengine.ext import db
+from session import Session
+#
+from django.template.loader import get_template
+from django.template import Context
+from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
+
+from models import User
+
+
+def renderLogin():
+    try:
+        message = Session()["message"]
+    except KeyError:
+        message = ''
+        
+    if (message != None) and (message != ""):
+        #str_message = pickle.loads(message)
+        template_values = {
+           'error': message}
+    else:
+        template_values = []
+        
+    t = get_template('login.html')
+    return HttpResponse(t.render(template_values))
+#    except Error:
+#        self.error(500)
+
+        
+def login(request):
+    if request.method == "GET":
+        return renderLogin()
+    else:
+        # its a POST, so credentials should have been supplied
+#        try:
+            username = request.POST.get('username','')
+            pwd = request.POST.get('password','')
+              
+            try:
+                me = User.get_by_key_name(username)
+            except Exception:
+                print sys.exc_info()
+                me = None
+                
+            if me == None:
+                #FAILED LOGIN
+                Session().put('message', "User Name and/or Password do not match")
+                return renderLogin()
+            else:
+                #good login
+                Session().put('username', username)
+                Session().put('message', '')
+                return HttpResponseRedirect('/')
+                            
+#        except Error:
+#            self.error(500)
+    
+def logoff(request):
+    try:
+        Session().delete()
+        return HttpResponseRedirect('/login/')
+    except Error:
+            self.error(500)
+
+class LoginException(BaseException):
+    def __init__(self):
+        BaseException.__init__()
+        
+def register(request):
+    def hash (str):
+        m = hashlib.md5()
+        m.update(settings.SECRET_KEY)
+        m.update(str)
+        return m.digest()
+
+    if request.method == "GET":
+        t = get_template('register.html')
+        return HttpResponse(t.render([]))
+    else:
+        #add new user
+        username = request.POST.get("username",'')
+        pwd = request.POST.get("password","")
+        if username != '':
+            newUser = User(key_name = username)
+            newUser.email = username
+            #newUser.key name = username
+            newUser.pwdHash = hash (pwd)
+            newUser.put()
+            Session().put('username',username)
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponseRedirect('/register/')        
+        
+def main (request):
+    try:
+        t = get_template('index.html')
+        return HttpResponse(t.render(main_context()))
+    except Exception:
+        #not logged in
+        t = get_template('login.html')
+        return HttpResponse(t.render(Context()))
+
+def main_context():
+    me = Session()['username']
+    if (me != None) and (me != ''):
+        user_me = User().get_by_key_name(me)
+        buddy_list = user_me.get_buddy_list()
+        buddy_out_list = user_me.get_buddy_list(outstanding=True)
+        return Context({
+          'buddy_count': len(buddy_list),
+          'out_count': len(buddy_out_list),
+          'buddies': buddy_list,
+          'buddies_outstanding': buddy_out_list,
+          'username': me})
+    else:
+        raise Exception, 'No User Logged In'
+    
+
+def addbuddy(request):
+    #add a new buddy
+    if request.method == 'GET':
+        #just render the form
+        t = get_template('addbuddy.html')
+        return HttpResponse(t.render(main_context()))
+    else:
+        # POST - process the request
+        new_buddy_email = request.POST.get('email', '')
+        new_buddy = User().get_by_key_name(new_buddy_email)
+        if new_buddy != None:
+            #found them
+            my_email = Session()['username']
+            me = User().get_by_key_name(my_email)
+            #new buddy object
+            me.add_buddy(new_buddy.key())
+            key = me.put()
+            
+#            #test
+#            test_me = Session()['username']
+#        
+#            if (test_me != None) and (me != ''):
+#                buddy_me = Buddy().get_by_key_name(test_me)
+#                buddy_list = buddy_me.my_buddies
+#            #end test
+#            
+            return HttpResponseRedirect('/')
+        else:
+            #not found
+            t = get_template('addbuddy.html')
+            return HttpResponse(t.render({'message': 'User not found'}))
+                                
+        
+def wipedb(request):
+    for bud in Buddy().all():
+        bud.delete()

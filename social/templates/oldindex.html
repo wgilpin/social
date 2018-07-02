@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    	{% include 'dojo-local.html' %}
+	    
+    	<script type="text/javascript">
+	    	dojo.require("dojo.parser");
+	    	dojo.require("dijit.Editor");
+	    	dojo.require("dijit.InlineEditBox");
+	    	dojo.require("dijit.form.Button");
+	    	dojo.require("dijit.form.Textarea");  
+	    	dojo.require("dijit.form.TextBox");
+	    	dojo.require("dijit.form.CheckBox");
+	    	dojo.require("dijit.form.FilteringSelect");
+	    	dojo.require("dijit.layout.ContentPane");
+	        dojo.require("dijit.layout.BorderContainer");
+	        dojo.require("dijit.layout.AccordionContainer");
+	        dojo.require("dijit._editor.plugins.FontChoice");  // 'fontName','dojo.require("dijit._editor.plugins.FontChoice");','formatBlock'
+	  		dojo.require("dijit._editor.plugins.TextColor");
+	  		dojo.require("dijit._editor.plugins.LinkDialog");
+	  		dojo.require("dijit.Toolbar");
+	  		dojo.require("dijit.Dialog");
+	  		dojo.require("dojox.validate.regexp");   
+			dojo.require("dijit.form.ValidationTextBox");
+			dojo.require("dijit._Widget");
+			dojo.require("dojo.dnd.Moveable");
+			dojo.require("dojox.layout.ResizeHandle");
+			dojo.require("dojo.dnd.move");
+			dojo.require("dojox.form.FileInputAuto");
+			dojo.require("dojox.layout.ExpandoPane");
+			
+			
+	    </script>
+    <script type="text/javascript" src="/js/canvasEditor.js"></script>
+    
+</head>
+
+<body class="soria">
+		{% include 'textEditDialog.html' %}
+		{% include 'imgDialog.html' %}
+		 <div id="mainDiv" dojoType="dijit.layout.BorderContainer" design="sidebar" gutters="false" 
+					style=" height: 100%; width: 100%; ">
+			<!-- -------------------------------------------
+			----
+			----  TOP
+			----
+			-------------------------------------------- -->
+			<div dojoType="dijit.layout.ContentPane" region="top" class="dijitBorderContainer" style="border: 5px #B9CBF1 solid;">
+				<!-- Headline -->
+				<img src="/images/SocialCanvas.gif"alt="The Social Canvas" height="24"/> 
+				<img name="easel"  src="/images/easel.gif"alt="The Social Canvas" height="80" style="float:right"/> 
+				{% if username %}
+				    <p>Logged in as <b>{{ username }}</b> 
+				    <form action="/logoff" method="get">
+				      <input type="submit" value="Logoff">
+				    </form>
+				    </p>
+				{% else %}
+				    <a href="/login/">Log In</a>
+				{% endif %}
+			</div>
+			
+			<!-- -------------------------------------------
+			----
+			----  LEFT
+			----
+			-------------------------------------------- -->
+		 	<div dojoType="dojox.layout.ExpandoPane" title="Room" region="left" id="left-bar" class="left-bar-open">	        	
+		         {% include 'leftBar.html' %} 
+		    </div>
+		    
+		    <!-- -------------------------------------------
+			----
+			----  CENTRE
+			----
+			-------------------------------------------- -->
+			<div dojoType="dijit.layout.ContentPane" region="center" 
+				layoutAlign="client">
+				<!-- Main Text Edit -->
+				<div dojoType="dijit.layout.BorderContainer" design="headline" gutters="false"	style="border: 5px #B9CBF1 solid;">
+				    <div dojoType="dijit.layout.ContentPane" region="top" class="dijitBorderContainer">
+				    	<div id="contentToolbar" dojoType="dijit.Toolbar">
+				    		<div dojoType="dijit.form.Button" id="contentToolbar.save" iconClass="contentToolbarIconSave"   
+						    	showLabel="false" onclick="mainTb_function('save');">Save</div>
+						    <div dojoType="dijit.form.Button" id="contentToolbar.load" iconClass="contentToolbarIconLoad"   
+						    	showLabel="false" onclick="mainTb_function('load');">Reload</div>
+						    <!-- The following adds a line between toolbar sections -->
+						    <span dojoType="dijit.ToolbarSeparator"></span>
+						    <div dojoType="dijit.form.Button" id="contentToolbar.addText" iconClass="contentToolbarIconAddText"   
+						    	showLabel="false" onclick="mainTb_function('addText');">Insert Text</div> 
+						    <div dojoType="dijit.form.Button" id="contentToolbar.addImg" iconClass="contentToolbarIconAddImg"   
+						    	showLabel="false" onclick="mainTb_function('addImage');">Insert Image</div>
+						    <!-- The following adds a line between toolbar sections -->
+						    <span dojoType="dijit.ToolbarSeparator"></span>
+						    <div dojoType="dijit.form.Button" id="contentToolbar.edit" iconClass="contentToolbarIconEdit"   
+						    	showLabel="false" onclick="mainTb_function('edit');">Edit</div>
+				    		<div dojoType="dijit.form.Button" id="contentToolbar.cut" iconClass="dijitEditorIcon dijitEditorIconCut"   
+						    	showLabel="false" onclick="mainTb_function('cut');">Cut</div>
+						    <div dojoType="dijit.form.Button" id="contentToolbar.copy" iconClass="dijitEditorIcon dijitEditorIconCopy"
+						    	showLabel="false" onclick="mainTb_function('copy');">Copy</div>
+						    <div dojoType="dijit.form.Button" id="contentToolbar.paste" iconClass="dijitEditorIcon dijitEditorIconPaste"
+						    	showLabel="false" onclick="mainTb_function('paste');">Paste</div>
+						</div>
+						<h1>
+					        <span 
+					        	dojoType="dijit.InlineEditBox"
+					        	editor="dijit.form.TextBox"
+					        	onChange="editRoomName(arguments[0])">
+					        	{{ room_name }}
+					        	</span>
+				        </h1>
+				    </div>
+				    <div dojoType="dijit.layout.ContentPane" id="contents" region="center">
+				    	{{ content }}
+			      	</div>
+			    </div>	
+			</div>	
+		</div>
+	</script> 
+	</body>
+</html>

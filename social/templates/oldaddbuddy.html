@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  <p>
+    <b>Add a Buddy<>
+    <form action="/addBuddy/" "method="post">
+      <div><input type="text" name="email" /></div>
+      {% if message %}
+      <p><b>{{ message }}</b></p>
+      {% endif %}
+      <div><input type="submit" value="Add" /><input type="submit" value="Cancel" /></div>
+      
+    </form>
+    
+    <a href="{{ url }}">{{ url_linktext }}</a>
+
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+  	<head>
+    	<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  	</head>
+  	<body>
+	  	<p>
+	    <b>Register New user</b>
+		</p>	
+	    <form action="/register/" method="post">
+	      <div>User Name <input type = "text" name="username"/></div>
+	      <div>Password <input type = "password" name="password"/></div>
+	      <div><input type="submit" value="Create"></div>
+	    </form>
+	    
+  	</body>
+</html>

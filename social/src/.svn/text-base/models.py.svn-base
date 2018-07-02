@@ -1,0 +1,51 @@
+import cgi
+import wsgiref.handlers
+import os
+
+from google.appengine.api import users
+from google.appengine.ext import db
+
+from appengine_django.models import BaseModel
+from google.appengine.ext import db
+
+
+    
+class User(db.Model):
+  email = db.StringProperty()
+  sys_user = db.UserProperty()
+  pwdHash = db.StringProperty()
+  display_name = db.StringProperty()
+  __buddies = db.ListProperty(db.Key)
+  __buddies_outstanding = db.ListProperty(db.Key)
+  
+  def add_buddy(self,key,outstanding=True):
+      list = self.__buddies
+      if outstanding:
+          list = self.__buddies_outstanding
+      if list.__contains__(key):
+          pass
+      else:
+          list.append(key)
+      
+  def get_buddy_list(self,outstanding=False):
+      list = self.__buddies
+      if outstanding:
+          list = self.__buddies_outstanding
+      res = []
+      for key in list:
+          buddy = User().get(key)
+          res.append(buddy)
+      return res
+             
+             
+      
+
+class ChatMsg(db.Model):
+    chatID = db.IntegerProperty()
+    text = db.StringProperty()
+    time = db.DateTimeProperty()
+    
+class BuddyChat(db.Model):
+    user = db.ReferenceProperty(User)
+    chat = db.IntegerProperty()
+    active = db.BooleanProperty()

@@ -1,0 +1,24 @@
+<div dojoType="dijit.Dialog" id="roomSettingsDialog" title="Room Settings" >
+	<form id="settingsform">
+		<table>
+		<tr><td>Read</td><td>Write</td></tr>
+		<tr>
+			<td><input type="radio" name="read" id="access_world_rd" checked value="world"/> 
+	    			<label for="access_world">Public</label> <br />
+	    	    <input type="radio" name="read" id="access_owner_rd" checked="false" value="private"/> 
+	    			<label for="access_owner">Private</label> <br />
+	    		*Members can always<br/>read if you have any
+	    	</td>
+	    	<td><input type="radio" name="write" id="access_world_wr" checked value="world"/> 
+	    			<label for="access_world">Public</label> <br />
+	    	    <input type="radio" name="write" id="access_group_wr" checked="false" value="room"/> 
+	    			<label for="access_group">Members Only</label> <br />
+	    		<input type="radio" name="write" id="access_owner_wr" checked="false" value="private"/> 
+	    			<label for="access_owner">Private</label> <br />
+	    	</td>
+	    </tr>
+	    </table>
+	</form>
+	<button onclick="submitNewRoomSettings()">Save</button>
+
+</div>

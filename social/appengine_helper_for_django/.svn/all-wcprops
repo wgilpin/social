@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django
+END
+manage.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/manage.py
+END
+app.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/app.yaml
+END
+VERSION
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/VERSION
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/__init__.py
+END
+KNOWN_ISSUES
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/KNOWN_ISSUES
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/settings.py
+END
+CHANGES
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/CHANGES
+END
+COPYING
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/COPYING
+END
+main.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/main.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/urls.py
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/social_canvas/!svn/ver/2/canvasDj/appengine_helper_for_django/README
+END
